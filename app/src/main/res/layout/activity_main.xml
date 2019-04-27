@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_face_detection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Face Detection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="30dp" />
+
+    <Button
+        android:id="@+id/btn_face_emotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Face Emotion"
+        app:layout_constraintEnd_toEndOf="@+id/btn_face_detection"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="@+id/btn_face_detection"
+        app:layout_constraintTop_toBottomOf="@+id/btn_face_detection"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_text_emotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Text Emotion"
+        app:layout_constraintEnd_toEndOf="@+id/btn_face_emotion"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="@+id/btn_face_emotion"
+        app:layout_constraintTop_toBottomOf="@+id/btn_face_emotion"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>
