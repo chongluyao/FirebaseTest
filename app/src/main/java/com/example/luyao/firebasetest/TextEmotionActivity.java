@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 public class TextEmotionActivity extends AppCompatActivity {
 
-    private static final String TAG = "FaceDetectionActivity";
+    private static final String TAG = "TextDetectionActivity";
     Button startBtn;
     TextView inputTextView, resultTextView;
     HashMap<String, Integer> word2id;
@@ -72,6 +72,7 @@ public class TextEmotionActivity extends AppCompatActivity {
                         .setAssetFilePath("text_analyze2.tflite")
                         .build();
         FirebaseModelManager.getInstance().registerLocalModel(localSource);
+        Log.d(TAG, "onCreate: load option");
         FirebaseModelOptions options = new FirebaseModelOptions.Builder()
                 .setLocalModelName("text_model")
                 .build();
@@ -97,19 +98,26 @@ public class TextEmotionActivity extends AppCompatActivity {
                     Log.i(TAG, "onCreate: " + characters[i]);
                 }
                 // get vector
-                int[] vector = new int[seqLength];
+                int[][] vector = new int[1][60];
                 int point = seqLength - 1;
                 for (int i = characters.length - 1;i >= 0;i --) {
                     String s = String.valueOf(characters[i]);
-                    vector[point] = word2id.get(s);
+                    vector[0][point] = word2id.get(s);
                     point --;
+                }
+                for (int i = 0;i < 1;i ++) {
+                    for (int j = 0;j < seqLength;j ++) {
+                        Log.d(TAG, "onClick: " + vector[i][j]);
+                    }
                 }
                 Log.i(TAG, "onCreate: " + Arrays.toString(vector));
                 // get inputs
                 try {
+                    Log.d(TAG, "onClick: start build");
                     inputs = new FirebaseModelInputs.Builder()
                             .add(vector)  // add() as many input arrays as your model requires
                             .build();
+                    Log.d(TAG, "onClick: start run");
                     firebaseInterpreter.run(inputs, inputOutputOptions)
                             .addOnSuccessListener(
                                     new OnSuccessListener<FirebaseModelOutputs>() {
